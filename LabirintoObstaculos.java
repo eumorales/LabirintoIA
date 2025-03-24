@@ -1,4 +1,4 @@
-package com.gilbertomorales.trabalho;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -13,7 +13,7 @@ import busca.MostraStatusConsole;
 import busca.Nodo;
 import javax.swing.JOptionPane;
 
-public class Solucao implements Estado, Heuristica {
+public class LabirintoObstaculos implements Estado, Heuristica {
     
     @Override
     public String getDescricao() {
@@ -43,8 +43,8 @@ public class Solucao implements Estado, Heuristica {
         return destino;
     }
     
-    public Solucao(char m[][], int linhaEntrada1, int colunaEntrada1, int linhaEntrada2, int colunaEntrada2,
-                  int linhaSaida, int colunaSaida, String o) {
+    public LabirintoObstaculos(char m[][], int linhaEntrada1, int colunaEntrada1, int linhaEntrada2, int colunaEntrada2,
+        int linhaSaida, int colunaSaida, String o) {
         this.matriz = m; 
         this.linhaEntrada1 = linhaEntrada1;
         this.colunaEntrada1 = colunaEntrada1;
@@ -55,7 +55,7 @@ public class Solucao implements Estado, Heuristica {
         this.op = o;
     }
 
-    public Solucao(int dimensao, String o, int porcentagemObstaculos) {
+    public LabirintoObstaculos(int dimensao, String o, int porcentagemObstaculos) {
         this.matriz = new char[dimensao][dimensao];
         this.op = o;
         
@@ -136,7 +136,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada1][this.colunaEntrada1] = 'O';
             mTemp[this.linhaEntrada1 - 1][this.colunaEntrada1] = '¹';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1 - 1, this.colunaEntrada1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1 - 1, this.colunaEntrada1, 
                                      this.linhaEntrada2, this.colunaEntrada2,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E¹ para cima");
@@ -148,7 +148,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada1][this.colunaEntrada1] = 'O';
             mTemp[this.linhaEntrada1 + 1][this.colunaEntrada1] = '¹';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1 + 1, this.colunaEntrada1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1 + 1, this.colunaEntrada1, 
                                      this.linhaEntrada2, this.colunaEntrada2,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E¹ para baixo");
@@ -160,7 +160,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada1][this.colunaEntrada1] = 'O';
             mTemp[this.linhaEntrada1][this.colunaEntrada1 - 1] = '¹';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1, this.colunaEntrada1 - 1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1, this.colunaEntrada1 - 1, 
                                      this.linhaEntrada2, this.colunaEntrada2,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E¹ para esquerda");
@@ -172,7 +172,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada1][this.colunaEntrada1] = 'O';
             mTemp[this.linhaEntrada1][this.colunaEntrada1 + 1] = '¹';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1, this.colunaEntrada1 + 1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1, this.colunaEntrada1 + 1, 
                                      this.linhaEntrada2, this.colunaEntrada2,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E¹ para direita");
@@ -186,7 +186,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada2][this.colunaEntrada2] = 'O';
             mTemp[this.linhaEntrada2 - 1][this.colunaEntrada2] = '²';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
                                      this.linhaEntrada2 - 1, this.colunaEntrada2,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E² para cima");
@@ -198,7 +198,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada2][this.colunaEntrada2] = 'O';
             mTemp[this.linhaEntrada2 + 1][this.colunaEntrada2] = '²';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
                                      this.linhaEntrada2 + 1, this.colunaEntrada2,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E² para baixo");
@@ -210,7 +210,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada2][this.colunaEntrada2] = 'O';
             mTemp[this.linhaEntrada2][this.colunaEntrada2 - 1] = '²';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
                                      this.linhaEntrada2, this.colunaEntrada2 - 1,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E² para esquerda");
@@ -222,7 +222,7 @@ public class Solucao implements Estado, Heuristica {
             mTemp[this.linhaEntrada2][this.colunaEntrada2] = 'O';
             mTemp[this.linhaEntrada2][this.colunaEntrada2 + 1] = '²';
             
-            Solucao novo = new Solucao(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
+            LabirintoObstaculos novo = new LabirintoObstaculos(mTemp, this.linhaEntrada1, this.colunaEntrada1, 
                                      this.linhaEntrada2, this.colunaEntrada2 + 1,
                                      this.linhaSaida, this.colunaSaida,
                                      "Movendo E² para direita");
@@ -232,8 +232,8 @@ public class Solucao implements Estado, Heuristica {
     
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Solucao) {
-            Solucao e = (Solucao) o;
+        if (o instanceof LabirintoObstaculos) {
+            LabirintoObstaculos e = (LabirintoObstaculos) o;
             for (int i = 0; i < e.matriz.length; i++) {
                 for (int j = 0; j < e.matriz.length; j++) {
                     if (e.matriz[i][j] != this.matriz[i][j]) {
@@ -297,7 +297,7 @@ public class Solucao implements Estado, Heuristica {
         try {
             dimensao = Integer.parseInt(JOptionPane.showInputDialog(null,"Entre com a dimensão do Puzzle!"));
             porcentagemObstaculos = Integer.parseInt(JOptionPane.showInputDialog(null,"Porcentagem de obstáculos!"));
-            final Solucao estadoInicial = new Solucao(dimensao, "estado inicial", porcentagemObstaculos);
+            final LabirintoObstaculos estadoInicial = new LabirintoObstaculos(dimensao, "estado inicial", porcentagemObstaculos);
             
             System.out.println("Estado Inicial:");
             System.out.println(estadoInicial);
