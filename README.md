@@ -8,7 +8,7 @@
 
 <h3> Proposta: </h3>
 
-> O presente repositório tem como objetivo detalhar sobre métodos de buscar e demonstrar uma implementação reutilizando um código já existente de um Labirinto com Obstáculos, para isso, utilizamos a Biblioteca de Busca criada por Jomi Hübner.
+> O presente repositório tem como objetivo detalhar sobre métodos de buscas e demonstrar uma implementação reutilizando um código já existente de um Labirinto com Obstáculos, para isso, utilizamos a Biblioteca de Busca criada por Jomi Hübner.
 
 > A implementação consiste em colocar 2 Entradas (E) no labirinto e apenas 1 Saída (S), após isso, o usuário poderá escolher a dimensão, número de obstáculos e o código aplicará os métodos de busca (Profundidade e Largura) em cima da mesma matriz, até achar a saída.
 
