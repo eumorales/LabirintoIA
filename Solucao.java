@@ -302,29 +302,67 @@ public class Solucao implements Estado, Heuristica {
             System.out.println("Estado Inicial:");
             System.out.println(estadoInicial);
             
+            final Nodo[] resultadoProfundidade = {null};
+            final Nodo[] resultadoLargura = {null};
+            final long[] tempoProfundidade = {0};
+            final long[] tempoLargura = {0};
+            
             ExecutorService executor = Executors.newFixedThreadPool(2);
             
             executor.execute(() -> {
+                long inicio = System.currentTimeMillis();
                 System.out.println("\nIniciando busca em PROFUNDIDADE");
-                Nodo n = new BuscaProfundidade(new MostraStatusConsole()).busca(estadoInicial);
-                if (n == null) {
+                resultadoProfundidade[0] = new BuscaProfundidade(new MostraStatusConsole()).busca(estadoInicial);
+                tempoProfundidade[0] = System.currentTimeMillis() - inicio;
+                
+                if (resultadoProfundidade[0] == null) {
                     System.out.println("Busca em profundidade: sem solução!");
                 } else {
-                    System.out.println("Solução por profundidade:\n" + n.montaCaminho() + "\n\n");
+                    System.out.println("Solução por profundidade:\n" + resultadoProfundidade[0].montaCaminho() + "\n\n");
                 }
             });
             
             executor.execute(() -> {
+                long inicio = System.currentTimeMillis();
                 System.out.println("\nIniciando busca em LARGURA");
-                Nodo n = new BuscaLargura(new MostraStatusConsole()).busca(estadoInicial);
-                if (n == null) {
+                resultadoLargura[0] = new BuscaLargura(new MostraStatusConsole()).busca(estadoInicial);
+                tempoLargura[0] = System.currentTimeMillis() - inicio;
+                
+                if (resultadoLargura[0] == null) {
                     System.out.println("Busca em largura: sem solução!");
                 } else {
-                    System.out.println("Solução por largura:\n" + n.montaCaminho() + "\n\n");
+                    System.out.println("Solução por largura:\n" + resultadoLargura[0].montaCaminho() + "\n\n");
                 }
             });
             
             executor.shutdown();
+            
+            while (!executor.isTerminated()) {
+                Thread.sleep(100);
+            }
+            
+            System.out.println("\nCOMPARAÇÃO DE EFICIÊNCIA:");
+            System.out.println("Tempo Profundidade: " + tempoProfundidade[0] + "ms");
+            System.out.println("Tempo Largura: " + tempoLargura[0] + "ms");
+            
+            String maisEficiente;
+            if (resultadoProfundidade[0] == null && resultadoLargura[0] == null) {
+                maisEficiente = "Nenhuma busca encontrou solução.";
+            } else if (resultadoProfundidade[0] == null) {
+                maisEficiente = "Largura foi mais eficiente (Profundidade não encontrou solução).";
+            } else if (resultadoLargura[0] == null) {
+                maisEficiente = "Profundidade foi mais eficiente (Largura não encontrou solução).";
+            } else {
+                if (tempoProfundidade[0] < tempoLargura[0]) {
+                    maisEficiente = "Busca por profundidade foi mais rápida.";
+                } else if (tempoLargura[0] < tempoProfundidade[0]) {
+                    maisEficiente = "Busca por largura foi mais rápida.";
+                } else {
+                    maisEficiente = "Ambas tiveram o mesmo tempo de execução.";
+                }
+            }
+            
+            System.out.println("\nConclusão: " + maisEficiente);
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
